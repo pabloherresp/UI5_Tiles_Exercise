@@ -1,0 +1,6 @@
+<mvc:View controllerName="com.xtendhr.tilesexercise.tilesexercise.controller.Employees"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+    <Page id="pageEmployees" title="{i18n>employeesTitle}">
+    </Page>
+</mvc:View>

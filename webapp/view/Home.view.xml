@@ -1,6 +1,8 @@
 <mvc:View controllerName="com.xtendhr.tilesexercise.tilesexercise.controller.Home"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m">
-    <Page id="page" title="{i18n>title}">
+    <Page id="pageHome" title="{i18n>title}">
+    	<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="{i18n>productsTitle}" subheader="{i18n>productsSubheader}" press="pressProducts"/>
+    	<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="{i18n>employeesTitle}" subheader="{i18n>employeesSubheader}" press="pressEmployees"/>
     </Page>
 </mvc:View>

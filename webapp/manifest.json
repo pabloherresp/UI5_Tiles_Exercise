@@ -91,9 +91,23 @@
       "routes": [
         {
           "name": "RouteHome",
-          "pattern": ":?query:",
+          "pattern": "",
           "target": [
             "TargetHome"
+          ]
+        },
+        {
+          "name": "Products",
+          "pattern": "Products:?productID:",
+          "target": [
+            "Products"
+          ]
+        },
+        {
+          "name": "Employees",
+          "pattern": "Employees:?employeeID:",
+          "target": [
+            "Employees"
           ]
         }
       ],
@@ -101,13 +115,21 @@
         "TargetHome": {
           "id": "Home",
           "name": "Home"
+        },
+        "Products": {
+          "id": "Products",
+          "name": "Products"
+        },
+        "Employees": {
+          "id": "Employees",
+          "name": "Employees"
         }
       }
     },
     "rootView": {
       "viewName": "com.xtendhr.tilesexercise.tilesexercise.view.App",
       "type": "XML",
-      "id": "App",
+      "id": "app",
       "async": true
     }
   }

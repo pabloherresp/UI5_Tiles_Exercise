@@ -1,1 +1,12 @@
-/* Enter your custom styles here */
+.centeredContainer {
+    width: 70%;
+    max-width: 1200px;      /* opcional: límite en pantallas grandes */
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.tileLayout {
+	float: left;
+}
