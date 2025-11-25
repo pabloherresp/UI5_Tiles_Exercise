@@ -1,6 +1,48 @@
 <mvc:View controllerName="com.xtendhr.tilesexercise.tilesexercise.controller.Employees"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m">
-    <Page id="pageEmployees" title="{i18n>employeesTitle}">
+    <Page class="page" id="pageEmployees" title="{i18n>employeesTitle}" showNavButton="true" navButtonPress="goBack">
+		<headerContent>
+			<Button text="{i18n>employeeButtonNew}" press="openNew"/>
+		</headerContent>
+		<VBox class="centeredContainer">
+			<Table id="idEmployeesTable" inset="false" items="{Employees>/value}" itemPress="openDetails">
+				<columns>
+					<Column id="emplIdCol" hAlign="Initial">
+						<Text text="{i18n>employeeTableColId}" />
+					</Column>
+					<Column id="titleCol" hAlign="Begin">
+						<Text text="{i18n>employeeTableColTitle}" />
+					</Column>
+					<Column id="regCol" hAlign="Center">
+						<Text text="{i18n>employeeTableColRegion}"/>
+					</Column>
+					<Column id="hireDateCol" hAlign="Begin">
+						<Text text="{i18n>employeeTableColDate}"/>
+					</Column>
+					<Column id="picCol" hAlign="Center">
+						<Text text="{i18n>employeeTableColPhoto}" />
+					</Column>
+					<Column hAlign="Center">
+						<Text text="{i18n>employeeTableColAction}" />
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem vAlign="Middle">
+						<cells>
+							<ObjectIdentifier title="{Employees>FirstName} {Employees>LastName}" text="ID: {Employees>EmployeeID}" />
+                            <ObjectAttribute text="{Employees>Title}" />
+							<ObjectAttribute text="{= ${Employees>Region} ? ${Employees>Region} + ', ' + ${Employees>Country} : ${Employees>Country}}"/> <!-- Ternaria con referencias -->
+							<ObjectAttribute text="{path: 'Employees>HireDate', formatter: '.dateFormatter'}"/>
+                            <Image src="{path: 'Employees>Photo', formatter: '.formatImage'}" width="3rem" height="3rem" />
+							<VBox>
+								<Button text="{i18n>employeeTableColButtonViewText}" width="50%" press="openDetails"/>
+								<Button text="{i18n>employeeTableColButtonEditText}" width="50%" press="openEdit"/>
+							</VBox>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</VBox>
     </Page>
 </mvc:View>

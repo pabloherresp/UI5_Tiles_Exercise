@@ -1,0 +1,84 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:l="sap.ui.layout"	xmlns:f="sap.ui.layout.form"
+    controllerName="com.xtendhr.tilesexercise.tilesexercise.controller.EmployeeForm">
+    <Dialog id="employeeFormDialog" closeOnNavigation="true" stretch="true" contentWidth="80%" contentHeight="80%">
+        <VBox class="sapUiSmallMargin">
+            <f:Form id="employeeDialogFormEdit" editable="true" class="EmployeeForm">
+			<f:layout>
+				<f:ResponsiveGridLayout
+					labelSpanXL="4"
+					labelSpanL="4"
+					labelSpanM="12"
+					labelSpanS="12"
+					adjustLabelSpan="true"
+					emptySpanXL="0"
+					emptySpanL="0"
+					emptySpanM="0"
+					emptySpanS="0"
+					columnsXL="2"
+					columnsL="2"
+					columnsM="2"
+					singleContainerFullSize="false" />
+			</f:layout>
+                <f:formContainers>
+                    <f:FormContainer>
+                        <f:formElements>
+                            <f:FormElement label="Name">
+                                <f:fields>
+                                    <Input type="Text" placeholder="Name" value="{dialogModel>/FirstName}" />
+                                    <Input type="Text" placeholder="Surname" value="{dialogModel>/LastName}" />
+                                </f:fields>
+                            </f:FormElement>
+                            <f:FormElement label="Phone Number">
+                                <f:fields>
+                                    <Input type="Tel" value="{dialogModel>/HomePhone}" />
+                                </f:fields>
+                            </f:FormElement>
+                            <f:FormElement label="Birthdate">
+                                <f:fields>
+                                    <DatePicker value="{path: 'dialogModel>/BirthDate', formatter: '.formatDateToForm'}" displayFormat="dd-MM-YYYY"
+                                    valueFormat="yyyy-MM-ddT00:00:00" placeholder="Enter Date" change="birthdateChange"/>
+                                </f:fields>
+                            </f:FormElement>
+                            <f:FormElement label="Hiring Date">
+                                <f:fields>
+                                    <DatePicker  value="{path: 'dialogModel>/BirthDate', formatter: '.formatDateToForm'}" displayFormat="dd-MM-YYYY"
+                                    valueFormat="yyyy-MM-ddT00:00:00" placeholder="Enter Date" change="hiredateChange"/>
+                                </f:fields>
+                            </f:FormElement>
+                            <f:FormElement label="Photo">
+                                <f:fields>
+                                <Image src="{path: 'dialogModel>/Photo', formatter: '.formatImage'}" width="12rem" height="12rem" />
+                                </f:fields>
+                            </f:FormElement>
+                        </f:formElements>
+                    </f:FormContainer>
+                    <f:FormContainer>
+                        <f:formElements>
+                            <f:FormElement label="Address">
+                                <f:fields>
+                                    <Input value="{dialogModel>/Address}" />
+                                    <Input value="{dialogModel>/City}" />
+                                </f:fields>
+                            </f:FormElement>
+                            <f:FormElement label="Postal Code">
+                                <f:fields>
+                                    <Input value="{dialogModel>/PostalCode}" />
+                                </f:fields>
+                            </f:FormElement>
+                            <f:FormElement label="Region">
+                                <f:fields>
+                                    <Input value="{dialogModel>/Region}" />
+                                </f:fields>
+                            </f:FormElement>
+                            <f:FormElement label="Country">
+                                <f:fields>
+                                    <Input value="{dialogModel>/Country}" />
+                                </f:fields>
+                            </f:FormElement>
+                        </f:formElements>
+                    </f:FormContainer>
+                </f:formContainers>
+            </f:Form>
+        </VBox>
+    </Dialog>
+</core:FragmentDefinition>

@@ -4,7 +4,7 @@
 	xmlns:p="sap.m.plugins"
     xmlns="sap.m">
 
-    <Page class="page" id="pageProducts" title="{i18n>productsTitle}">
+    <Page class="page" id="pageProducts" title="{i18n>productsTitle}" showNavButton="true" navButtonPress="goBack">
 		<VBox class="centeredContainer">
 			<Table id="idProductsTable" inset="false" items="{Products>/value}">
 				<columns>
