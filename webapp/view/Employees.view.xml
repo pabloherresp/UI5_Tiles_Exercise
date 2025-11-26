@@ -32,9 +32,9 @@
 						<cells>
 							<ObjectIdentifier title="{Employees>FirstName} {Employees>LastName}" text="ID: {Employees>EmployeeID}" />
                             <ObjectAttribute text="{Employees>Title}" />
-							<ObjectAttribute text="{= ${Employees>Region} ? ${Employees>Region} + ', ' + ${Employees>Country} : ${Employees>Country}}"/> <!-- Ternaria con referencias -->
+							<ObjectAttribute text="{= ${Employees>Region} ? ${Employees>Region} + ', ' + ${Employees>Country} : ${Employees>Country}}"/> 
 							<ObjectAttribute text="{path: 'Employees>HireDate', formatter: '.dateFormatter'}"/>
-                            <Image src="{path: 'Employees>Photo', formatter: '.formatImage'}" width="3rem" height="3rem" />
+							<Image src="{path: 'Employees>Photo', formatter: '.formatImage'}" width="5rem" height="5rem"/>
 							<VBox>
 								<Button text="{i18n>employeeTableColButtonViewText}" width="50%" press="openDetails"/>
 								<Button text="{i18n>employeeTableColButtonEditText}" width="50%" press="openEdit"/>

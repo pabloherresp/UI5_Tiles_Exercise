@@ -17,20 +17,25 @@ sap.ui.define([
             if (typeof photo === "string") {
                 sTrimmed = photo.substring(104);
                 return "data:image/bmp;base64," + sTrimmed;
-            }
+            } else if(!photo)
+                return "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png"
         },dateFormatter: function (date){
             return date.substring(8,10) + "/" + date.substring(5,7) + "/" + date.substring(0,4)
         },formatDateToForm: function (date){
             if (!date) return null;
                 return date.split("T")[0]
         },birthdateChange: function (e) {
-            console.log(e.getParameters().value)
+            var date = e.getParameter("value")
+            var oModel = this._oDialog.getModel("dialogModel")
+            oModel.setProperty("/BirthDate", date)
         },hiredateChange: function (e){
-
-        },
-        openDialog: function(oData, sMode) {
+            var date = e.getParameter("value")
+            var oModel = this._oDialog.getModel("dialogModel")
+            oModel.setProperty("/HireDate", date)
+        },openDialog: function(oData, sMode) {
             var oView = this.getView()
-            var oDialogModel = new sap.ui.model.json.JSONModel(oData)
+            this._oDialogOriginal = (oData && sMode == "edit" ? structuredClone(oData) : null)
+            var oDialogModel = new sap.ui.model.json.JSONModel(oData ? structuredClone(oData) : {})
             var oStateModel = new sap.ui.model.json.JSONModel({ mode: sMode })
             var sName = (sMode == "edit" || sMode == "new" ? "EmployeeForm" : "EmployeeView")
 
@@ -78,6 +83,45 @@ sap.ui.define([
             this.openDialog(oData, "edit")
         },openNew: function (e) {
             this.openDialog(null, "new")
+        },onClose: function (e) {
+            var oDialogModel = this._oDialog.getModel("dialogModel")
+
+            if (this._oDialogOriginal) {
+                oDialogModel.setData(structuredClone(this._oDialogOriginal))
+            }
+            this._oDialogOriginal = null
+            this._oDialog.close()
+        },onSave: function (e) {
+            var oDialogModel = this._oDialog.getModel("dialogModel")
+            var oStateModel = this._oDialog.getModel("stateModel")
+            var oData = oDialogModel.getData()
+            var sMode = oStateModel.getProperty("/mode")
+
+            if (sMode === "new") 
+                this.newEmployee(oData)
+            else if (sMode === "edit")
+                this.editEmployee(oData)
+
+            this._oDialogOriginal = null
+            this._oDialog.close()
+        },editEmployee: function (oData) {
+            var oModel = this.getView().getModel("Employees")
+            var oEmployees = oModel.getData()
+            var i = oEmployees.value.findIndex(function(employee) {
+                return employee.EmployeeID === oData.EmployeeID;
+            })
+            oEmployees.value[i] = oData
+            oModel.setData(oEmployees)
+            oModel.refresh()
+        },newEmployee: function (oData) {
+            var oModel = this.getView().getModel("Employees")
+            var oEmployees = oModel.getData()
+
+            oData.EmployeeID = oEmployees.value.length+1
+            oEmployees.value.push(oData)
+            
+            oModel.setData(oEmployees)
+            oModel.refresh()
         }
-    });
-});
+    })
+})

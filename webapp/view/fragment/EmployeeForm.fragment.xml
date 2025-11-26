@@ -28,6 +28,11 @@
                                     <Input type="Text" placeholder="Surname" value="{dialogModel>/LastName}" />
                                 </f:fields>
                             </f:FormElement>
+                            <f:FormElement label="Title">
+                                <f:fields>
+                                    <Input type="Text" value="{dialogModel>/Title}" />
+                                </f:fields>
+                            </f:FormElement>
                             <f:FormElement label="Phone Number">
                                 <f:fields>
                                     <Input type="Tel" value="{dialogModel>/HomePhone}" />
@@ -35,19 +40,14 @@
                             </f:FormElement>
                             <f:FormElement label="Birthdate">
                                 <f:fields>
-                                    <DatePicker value="{path: 'dialogModel>/BirthDate', formatter: '.formatDateToForm'}" displayFormat="dd-MM-YYYY"
+                                    <DatePicker value="{path: 'dialogModel>/BirthDate', formatter: '.formatDateToForm'}" displayFormat="dd-MM-yyyy"
                                     valueFormat="yyyy-MM-ddT00:00:00" placeholder="Enter Date" change="birthdateChange"/>
                                 </f:fields>
                             </f:FormElement>
                             <f:FormElement label="Hiring Date">
                                 <f:fields>
-                                    <DatePicker  value="{path: 'dialogModel>/BirthDate', formatter: '.formatDateToForm'}" displayFormat="dd-MM-YYYY"
+                                    <DatePicker  value="{path: 'dialogModel>/HireDate', formatter: '.formatDateToForm'}" displayFormat="dd-MM-yyyy"
                                     valueFormat="yyyy-MM-ddT00:00:00" placeholder="Enter Date" change="hiredateChange"/>
-                                </f:fields>
-                            </f:FormElement>
-                            <f:FormElement label="Photo">
-                                <f:fields>
-                                <Image src="{path: 'dialogModel>/Photo', formatter: '.formatImage'}" width="12rem" height="12rem" />
                                 </f:fields>
                             </f:FormElement>
                         </f:formElements>
@@ -57,12 +57,16 @@
                             <f:FormElement label="Address">
                                 <f:fields>
                                     <Input value="{dialogModel>/Address}" />
-                                    <Input value="{dialogModel>/City}" />
+                                </f:fields>
+                            </f:FormElement>
+                            <f:FormElement label="City">
+                                <f:fields>
+                                    <Input type="Text" value="{dialogModel>/City}" />
                                 </f:fields>
                             </f:FormElement>
                             <f:FormElement label="Postal Code">
                                 <f:fields>
-                                    <Input value="{dialogModel>/PostalCode}" />
+                                    <Input type="Number" value="{dialogModel>/PostalCode}" />
                                 </f:fields>
                             </f:FormElement>
                             <f:FormElement label="Region">
@@ -77,8 +81,19 @@
                             </f:FormElement>
                         </f:formElements>
                     </f:FormContainer>
+                    <f:FormContainer>
+                        <f:FormElement label="Photo">
+                            <f:fields>
+                            <Image src="{path: 'dialogModel>/Photo', formatter: '.formatImage'}" width="12rem" height="12rem" />
+                            </f:fields>
+                        </f:FormElement>
+                    </f:FormContainer>
                 </f:formContainers>
             </f:Form>
         </VBox>
+        <buttons>
+            <Button text="Save" type="Emphasized" press="onSave"/>
+            <Button text="Close" press="onClose"/>
+        </buttons>
     </Dialog>
 </core:FragmentDefinition>

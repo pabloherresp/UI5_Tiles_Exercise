@@ -27,6 +27,11 @@
                                     <Text text="{dialogModel>/FirstName} {dialogModel>/LastName}" />
                                 </f:fields>
                             </f:FormElement>
+                            <f:FormElement label="Title">
+                                <f:fields>
+                                    <Text text="{dialogModel>/Title}" />
+                                </f:fields>
+                            </f:FormElement>
                             <f:FormElement label="Phone Number">
                                 <f:fields>
                                     <Text text="{dialogModel>/HomePhone}" />
@@ -40,11 +45,6 @@
                             <f:FormElement label="Hiring Date">
                                 <f:fields>
                                     <Text text="{path: 'dialogModel>/HireDate', formatter: '.dateFormatter'}" />
-                                </f:fields>
-                            </f:FormElement>
-                            <f:FormElement label="Photo">
-                                <f:fields>
-                                <Image src="{path: 'dialogModel>/Photo', formatter: '.formatImage'}" width="12rem" height="12rem" />
                                 </f:fields>
                             </f:FormElement>
                         </f:formElements>
@@ -61,7 +61,7 @@
                                     <Text text="{dialogModel>/PostalCode}" />
                                 </f:fields>
                             </f:FormElement>
-                            <f:FormElement label="Region">
+                            <f:FormElement label="Region" visible="{= !!${dialogModel>/Region} }">
                                 <f:fields>
                                     <Text text="{dialogModel>/Region}" />
                                 </f:fields>
@@ -73,8 +73,18 @@
                             </f:FormElement>
                         </f:formElements>
                     </f:FormContainer>
+                    <f:FormContainer>
+                        <f:FormElement label="Photo">
+                            <f:fields>
+                            <Image src="{path: 'dialogModel>/Photo', formatter: '.formatImage'}" width="12rem" height="12rem" />
+                            </f:fields>
+                        </f:FormElement>
+                    </f:FormContainer>
                 </f:formContainers>
             </f:Form>
         </VBox>
+        <buttons>
+            <Button text="Close" press="onClose"/>
+        </buttons>
     </Dialog>
 </core:FragmentDefinition>
