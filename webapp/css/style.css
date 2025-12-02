@@ -1,6 +1,6 @@
 .centeredContainer {
     width: 70%;
-    max-width: 1200px;      /* opcional: límite en pantallas grandes */
+    max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
     display: flex;
@@ -9,4 +9,17 @@
 }
 .tileLayout {
 	float: left;
+}
+.DynamicPageHeaderCustom{
+    padding-top: 0 !important;
+    padding-bottom: 1rem !important;
+}
+.FilterBarHBox{
+    margin-top: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+    max-width: 1200px;
+    justify-content: end;
+    align-items: end;
 }

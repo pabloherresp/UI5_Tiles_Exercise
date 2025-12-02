@@ -1,0 +1,93 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:l="sap.ui.layout"	xmlns:f="sap.ui.layout.form">
+    <Dialog id="productFormDialog" closeOnNavigation="true" contentWidth="80%">
+        <VBox class="sapUiSmallMargin">
+            <f:Form id="productDialogFormEdit" editable="true">
+			<f:layout>
+				<f:ResponsiveGridLayout
+					labelSpanXL="4"
+					labelSpanL="4"
+					labelSpanM="12"
+					labelSpanS="12"
+					adjustLabelSpan="true"
+					emptySpanXL="0"
+					emptySpanL="0"
+					emptySpanM="0"
+					emptySpanS="0"
+					columnsXL="2"
+					columnsL="2"
+					columnsM="2"
+					singleContainerFullSize="false" />
+			</f:layout>
+                <f:formContainers>
+                    <f:FormContainer>
+                        <f:formElements>
+                            <f:FormElement label="{i18n>productFormName}">
+                                <f:fields>
+                                    <Input type="Text" value="{dialogModel>/ProductName}" />
+                                </f:fields>
+                            </f:FormElement>
+                            <f:FormElement label="{i18n>productFormSupplier}">
+                                <f:fields>
+                                    <ComboBox
+                                        selectedKey="{path: 'dialogModel>/SupplierID', type: 'sap.ui.model.type.Integer'}"
+                                        items="{Suppliers>/value}">
+                                        <core:Item key="{path: 'Suppliers>SupplierID', type: 'sap.ui.model.type.Integer'}"
+                                                text="{Suppliers>CompanyName}" />
+                                    </ComboBox>
+                                </f:fields>
+                            </f:FormElement>
+                            <f:FormElement label="{i18n>productFormCategory}">
+                                <f:fields>
+                                    <ComboBox
+                                        selectedKey="{path: 'dialogModel>/CategoryID', type: 'sap.ui.model.type.Integer'}"
+                                        items="{Categories>/value}">
+                                        <core:Item key="{path: 'Categories>CategoryID', type: 'sap.ui.model.type.Integer'}"
+                                                text="{Categories>CategoryName}" />
+                                    </ComboBox>
+                                </f:fields>
+                            </f:FormElement>
+                            <f:FormElement label="{i18n>productFormQuantityPerUnit}">
+                                <f:fields>
+                                    <Input type="Text" value="{dialogModel>/QuantityPerUnit}" />
+                                </f:fields>
+                            </f:FormElement>
+                            <f:FormElement label="{i18n>productFormUnitPrice}">
+                                <f:fields>
+                                    <Input type="Number" value="{dialogModel>/UnitPrice}" />
+                                </f:fields>
+                            </f:FormElement>
+                        </f:formElements>
+                    </f:FormContainer>
+                    <f:FormContainer>
+                        <f:formElements>
+                            <f:FormElement label="{i18n>productFormUnitsStock}">
+                                <f:fields>
+                                    <Input type="Number" value="{dialogModel>/UnitsInStock}" />
+                                </f:fields>
+                            </f:FormElement>
+                            <f:FormElement label="{i18n>productFormUnitsOrder}">
+                                <f:fields>
+                                    <Input type="Number" value="{dialogModel>/UnitsOnOrder}" />
+                                </f:fields>
+                            </f:FormElement>
+                            <f:FormElement label="{i18n>productFormReorderLevel}">
+                                <f:fields>
+                                    <Input type="Number" value="{dialogModel>/ReorderLevel}" />
+                                </f:fields>
+                            </f:FormElement>
+                            <f:FormElement label="{i18n>productFormDiscontinued}">
+                                <f:fields>
+                                    <CheckBox selected="{dialogModel>/Discontinued}" />
+                                </f:fields>
+                            </f:FormElement>
+                        </f:formElements>
+                    </f:FormContainer>
+                </f:formContainers>
+            </f:Form>
+        </VBox>
+        <buttons>
+            <Button text="{i18n>formButtonSave}" type="Emphasized" press="onSave"/>
+            <Button text="{i18n>formButtonClose}" press="onClose"/>
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

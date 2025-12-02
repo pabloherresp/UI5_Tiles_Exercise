@@ -2,31 +2,90 @@
     xmlns:mvc="sap.ui.core.mvc"
 	xmlns:core="sap.ui.core"
 	xmlns:p="sap.m.plugins"
+	xmlns:f="sap.f"
+	xmlns:fb="sap.ui.comp.filterbar"
+	xmlns:l="sap.ui.layout"
     xmlns="sap.m">
 
-    <Page class="page" id="pageProducts" title="{i18n>productsTitle}" showNavButton="true" navButtonPress="goBack">
-		<VBox class="centeredContainer">
-			<Table id="idProductsTable" inset="false" items="{Products>/value}">
-				<columns>
-					<Column id="prodId">
-						<Text text="Product ID" />
-					</Column>
-					<Column id="priceId" hAlign="End">
-						<Text text="Price" />
-					</Column>
-				</columns>
-				<items>
-					<ColumnListItem vAlign="Middle">
-						<cells>
-							<ObjectIdentifier
-								title="{Products>ProductName}"
-								text="{Products>ProductID}" />
-							<ObjectNumber
-								number="{Products>UnitPrice}" />
-						</cells>
-					</ColumnListItem>
-				</items>
-			</Table>
-		</VBox>
-    </Page>
+    <f:DynamicPage id="pageProducts">
+		<f:title>
+			<f:DynamicPageTitle>
+				<f:heading>
+					 <HBox>
+						<Button icon="sap-icon://nav-back" press="goBack" type="Transparent"/>
+						<ToolbarSpacer width="1rem" />
+						<Title text="{i18n>productsTitle}" />
+					</HBox>
+				</f:heading>
+				<f:navigationActions>
+					<Button text="{i18n>productButtonNew}" press="openNew" type="Emphasized" />
+				</f:navigationActions>
+			</f:DynamicPageTitle>
+		</f:title>
+		<f:header>
+			<f:DynamicPageHeader class="DynamicPageHeaderCustom" pinnable="false">
+				<f:content>
+				<HBox class="FilterBarHBox">
+					<fb:FilterBar persistencyKey="" id="filterbarProducts" useToolbar="false" showGoOnFB="false"
+					showClearOnFB="false" showFilterConfiguration="false" >
+						<fb:filterGroupItems>
+							<fb:FilterGroupItem name="Name" label="Name" groupName="Group1" visibleInFilterBar="true">
+								<fb:control>
+									<Input id="searchProductNameId" name="Name" change="onFilterTextChange" placeholder="Input text..." />
+								</fb:control>
+							</fb:FilterGroupItem>
+						</fb:filterGroupItems>
+					</fb:FilterBar>
+					<HBox class="FilterBarButtons" justifyContent="SpaceBetween">
+						<Button text="Clear" press="clearFilter" />
+					</HBox>
+				</HBox>
+				</f:content>
+			</f:DynamicPageHeader>
+		</f:header>
+		<f:content>
+			<VBox class="centeredContainer" fitContainer="true">
+				<Table id="idProductsTable" inset="false" items="{Products>/value}">
+					<columns>
+						<Column id="prodId">
+							<Text text="{i18n>productTableColId}" />
+						</Column>
+						<Column id="supplierId" hAlign="Center">
+							<Text text="{i18n>producTableColSupplier}"/>
+						</Column>
+						<Column id="priceId" hAlign="Center">
+							<Text text="{i18n>productTableColPrice}" />
+						</Column>
+						<Column id="quantityPerUnit" hAlign="Center">
+							<Text text="{i18n>productTableColQuantity}"/>
+						</Column>
+						<Column hAlign="Center">
+							<Text text="{i18n>productTableColAction}" />
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem vAlign="Middle">
+							<cells>
+								<ObjectIdentifier
+									title="{Products>ProductName}"
+									text="{path: 'Products>CategoryID', formatter: '.formatterCategoryName'}" />
+								<ObjectIdentifier text="{parts: [
+											{ path: 'Products>SupplierID' },
+											{ value: 'company' }
+										],
+										formatter: '.formatterSupplier'}"/>
+								
+								<ObjectNumber emphasized="false" number="${path: 'Products>UnitPrice', type: 'sap.ui.model.type.Float', formatOptions: { minFractionDigits: 2, maxFractionDigits: 2 }}" />
+								<ObjectIdentifier text="{Products>QuantityPerUnit}"/>
+								<VBox>
+									<Button text="{i18n>employeeTableColButtonViewText}" press="openDetails" type="Transparent"/>
+									<Button text="{i18n>employeeTableColButtonEditText}" press="openEdit" type="Transparent"/>
+								</VBox>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</VBox>
+		</f:content>
+    </f:DynamicPage>
 </mvc:View>

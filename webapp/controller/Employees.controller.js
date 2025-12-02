@@ -8,6 +8,11 @@ sap.ui.define([
             var oModel = new sap.ui.model.json.JSONModel()
             oModel.loadData("localdata/Employees.json")
             this.getView().setModel(oModel, "Employees")
+
+            oModel.attachRequestCompleted(()=>{
+                this.employeesOriginalData = structuredClone(oModel.getData())
+            })
+
             this._dialogMode = null
         },
         goBack(){
@@ -112,6 +117,8 @@ sap.ui.define([
             })
             oEmployees.value[i] = oData
             oModel.setData(oEmployees)
+
+            this.employeesOriginalData = structuredClone(oModel.getData())
             oModel.refresh()
         },newEmployee: function (oData) {
             var oModel = this.getView().getModel("Employees")
@@ -121,7 +128,32 @@ sap.ui.define([
             oEmployees.value.push(oData)
             
             oModel.setData(oEmployees)
+
+            this.employeesOriginalData = structuredClone(oModel.getData())
             oModel.refresh()
+        },onFilterTextChange(event){
+            var changedText = event.getParameter("newValue")
+            var oFilteredData = structuredClone(this.employeesOriginalData)
+
+            if(!changedText)
+                oFilteredData.value = this.employeesOriginalData.value
+            else{
+                oFilteredData.value = oFilteredData.value.filter((item)=>{
+                    var fullname = item.FirstName + " " + item.LastName
+                    return fullname.toLowerCase().includes(changedText.toLowerCase())
+                })
+            }
+            
+            var oEmployeesModel = this.getView().getModel("Employees")
+            oEmployeesModel.setData(oFilteredData)
+            oEmployeesModel.updateBindings(true)
+        },clearFilter(event){
+            var searchInput = this.getView().byId("searchEmployeeNameId")
+            searchInput.setValue("")
+
+            var oEmployeesModel = this.getView().getModel("Employees")
+            oEmployeesModel.setData(structuredClone(this.employeesOriginalData))
+            oEmployeesModel.updateBindings(true)
         }
     })
 })

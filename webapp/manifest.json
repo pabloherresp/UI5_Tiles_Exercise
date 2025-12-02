@@ -25,6 +25,20 @@
           "odataVersion": "2.0"
         }
       }
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "TilesExercise-display": {
+          "semanticObject": "TilesExercise",
+          "action": "display",
+          "title": "{{TilesExercise-display.flpTitle}}",
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          },
+          "subTitle": "{{TilesExercise-display.flpSubtitle}}"
+        }
+      }
     }
   },
   "sap.ui": {
@@ -44,6 +58,7 @@
     }
   },
   "sap.ui5": {
+    "flexibilityServices": [],
     "flexEnabled": false,
     "dependencies": {
       "minUI5Version": "1.142.1",

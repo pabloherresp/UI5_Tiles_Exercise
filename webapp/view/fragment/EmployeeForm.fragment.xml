@@ -1,8 +1,7 @@
-<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:l="sap.ui.layout"	xmlns:f="sap.ui.layout.form"
-    controllerName="com.xtendhr.tilesexercise.tilesexercise.controller.EmployeeForm">
-    <Dialog id="employeeFormDialog" closeOnNavigation="true" stretch="true" contentWidth="80%" contentHeight="80%">
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:l="sap.ui.layout"	xmlns:f="sap.ui.layout.form">
+    <Dialog id="employeeFormDialog" closeOnNavigation="true" contentWidth="80%">
         <VBox class="sapUiSmallMargin">
-            <f:Form id="employeeDialogFormEdit" editable="true" class="EmployeeForm">
+            <f:Form id="employeeDialogFormEdit" editable="true">
 			<f:layout>
 				<f:ResponsiveGridLayout
 					labelSpanXL="4"
@@ -22,29 +21,29 @@
                 <f:formContainers>
                     <f:FormContainer>
                         <f:formElements>
-                            <f:FormElement label="Name">
+                            <f:FormElement label="{i18n>employeeFormName}">
                                 <f:fields>
-                                    <Input type="Text" placeholder="Name" value="{dialogModel>/FirstName}" />
-                                    <Input type="Text" placeholder="Surname" value="{dialogModel>/LastName}" />
+                                    <Input type="Text" placeholder="{i18n>employeeFormFirstName}" value="{dialogModel>/FirstName}" />
+                                    <Input type="Text" placeholder="{i18n>employeeFormSurname}" value="{dialogModel>/LastName}" />
                                 </f:fields>
                             </f:FormElement>
-                            <f:FormElement label="Title">
+                            <f:FormElement label="{i18n>employeeFormTitle}">
                                 <f:fields>
                                     <Input type="Text" value="{dialogModel>/Title}" />
                                 </f:fields>
                             </f:FormElement>
-                            <f:FormElement label="Phone Number">
+                            <f:FormElement label="{i18n>employeeFormPhoneNumber}">
                                 <f:fields>
                                     <Input type="Tel" value="{dialogModel>/HomePhone}" />
                                 </f:fields>
                             </f:FormElement>
-                            <f:FormElement label="Birthdate">
+                            <f:FormElement label="{i18n>employeeFormBirthdate}">
                                 <f:fields>
                                     <DatePicker value="{path: 'dialogModel>/BirthDate', formatter: '.formatDateToForm'}" displayFormat="dd-MM-yyyy"
                                     valueFormat="yyyy-MM-ddT00:00:00" placeholder="Enter Date" change="birthdateChange"/>
                                 </f:fields>
                             </f:FormElement>
-                            <f:FormElement label="Hiring Date">
+                            <f:FormElement label="{i18n>employeeFormHiringdate}">
                                 <f:fields>
                                     <DatePicker  value="{path: 'dialogModel>/HireDate', formatter: '.formatDateToForm'}" displayFormat="dd-MM-yyyy"
                                     valueFormat="yyyy-MM-ddT00:00:00" placeholder="Enter Date" change="hiredateChange"/>
@@ -54,27 +53,27 @@
                     </f:FormContainer>
                     <f:FormContainer>
                         <f:formElements>
-                            <f:FormElement label="Address">
+                            <f:FormElement label="{i18n>employeeFormAddress}">
                                 <f:fields>
                                     <Input value="{dialogModel>/Address}" />
                                 </f:fields>
                             </f:FormElement>
-                            <f:FormElement label="City">
+                            <f:FormElement label="{i18n>employeeFormCity}">
                                 <f:fields>
                                     <Input type="Text" value="{dialogModel>/City}" />
                                 </f:fields>
                             </f:FormElement>
-                            <f:FormElement label="Postal Code">
+                            <f:FormElement label="{i18n>employeeFormPostalCode}">
                                 <f:fields>
                                     <Input type="Number" value="{dialogModel>/PostalCode}" />
                                 </f:fields>
                             </f:FormElement>
-                            <f:FormElement label="Region">
+                            <f:FormElement label="{i18n>employeeFormRegion}">
                                 <f:fields>
                                     <Input value="{dialogModel>/Region}" />
                                 </f:fields>
                             </f:FormElement>
-                            <f:FormElement label="Country">
+                            <f:FormElement label="{i18n>employeeFormCountry}">
                                 <f:fields>
                                     <Input value="{dialogModel>/Country}" />
                                 </f:fields>
@@ -82,7 +81,7 @@
                         </f:formElements>
                     </f:FormContainer>
                     <f:FormContainer>
-                        <f:FormElement label="Photo">
+                        <f:FormElement label="{i18n>employeeFormPhoto}">
                             <f:fields>
                             <Image src="{path: 'dialogModel>/Photo', formatter: '.formatImage'}" width="12rem" height="12rem" />
                             </f:fields>
@@ -92,8 +91,8 @@
             </f:Form>
         </VBox>
         <buttons>
-            <Button text="Save" type="Emphasized" press="onSave"/>
-            <Button text="Close" press="onClose"/>
+            <Button text="{i18n>formButtonSave}" type="Emphasized" press="onSave"/>
+            <Button text="{i18n>formButtonClose}" press="onClose"/>
         </buttons>
     </Dialog>
 </core:FragmentDefinition>

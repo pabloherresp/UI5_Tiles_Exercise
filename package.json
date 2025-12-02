@@ -7,7 +7,7 @@
     "openui5",
     "sapui5"
   ],
-  "main": "webapp/index.html",
+  "main": "webapp",
   "dependencies": {},
   "devDependencies": {
     "@ui5/cli": "^4.0.16",
@@ -15,8 +15,8 @@
     "@sap-ux/ui5-middleware-fe-mockserver": "2"
   },
   "scripts": {
-    "start": "fiori run --open \"test/flp.html#app-preview\"",
-    "start-local": "fiori run --open \"/index.html?sap-ui-xx-viewCache=false\"",
+    "start": "ui5 serve --open test/flp-html#app-preview",
+    "start-local": "fiori run --open index.html?sap-ui-xx-viewCache=false",
     "start-local-old": "fiori run --config ./ui5-local.yaml --open \"test/flp.html#app-preview\"",
     "build": "ui5 build --config=ui5.yaml --clean-dest --dest dist",
     "deploy": "fiori verify",

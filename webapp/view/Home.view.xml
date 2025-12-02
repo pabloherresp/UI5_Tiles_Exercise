@@ -2,7 +2,17 @@
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m">
     <Page id="pageHome" title="{i18n>title}">
-    	<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="{i18n>productsTitle}" subheader="{i18n>productsSubheader}" press="pressProducts"/>
-    	<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="{i18n>employeesTitle}" subheader="{i18n>employeesSubheader}" press="pressEmployees"/>
+    	<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="{i18n>productsTitle}"
+        subheader="{i18n>productsSubheader}" press="pressProducts">
+            <TileContent>
+                <ImageContent src="sap-icon://product"/>
+            </TileContent>
+        </GenericTile>
+    	<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="{i18n>employeesTitle}"
+        subheader="{i18n>employeesSubheader}" press="pressEmployees">
+            <TileContent>
+                <ImageContent src="sap-icon://employee"/>
+            </TileContent>
+        </GenericTile>
     </Page>
 </mvc:View>

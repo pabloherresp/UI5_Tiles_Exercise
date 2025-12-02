@@ -1,10 +1,49 @@
 <mvc:View controllerName="com.xtendhr.tilesexercise.tilesexercise.controller.Employees"
     xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core"
+	xmlns:p="sap.m.plugins"
+	xmlns:f="sap.f"
+	xmlns:fb="sap.ui.comp.filterbar"
+	xmlns:l="sap.ui.layout"
     xmlns="sap.m">
-    <Page class="page" id="pageEmployees" title="{i18n>employeesTitle}" showNavButton="true" navButtonPress="goBack">
-		<headerContent>
-			<Button text="{i18n>employeeButtonNew}" press="openNew"/>
-		</headerContent>
+    
+	<f:DynamicPage id="pageEmployees">
+		<f:title>
+			<f:DynamicPageTitle>
+				<f:heading>
+					 <HBox>
+						<Button icon="sap-icon://nav-back" press="goBack" type="Transparent"/>
+						<ToolbarSpacer width="1rem" />
+						<Title text="{i18n>employeesTitle}" />
+					</HBox>
+				</f:heading>
+				<f:navigationActions>
+					<Button text="{i18n>productButtonNew}" press="openNew" type="Emphasized" />
+				</f:navigationActions>
+			</f:DynamicPageTitle>
+		</f:title>
+		<f:header>
+			<f:DynamicPageHeader class="DynamicPageHeaderCustom" pinnable="false">
+				<f:content>
+				<HBox class="FilterBarHBox">
+					<fb:FilterBar persistencyKey="" id="filterbarEmployees" useToolbar="false" showGoOnFB="false"
+					showClearOnFB="false" showFilterConfiguration="false" >
+						<fb:filterGroupItems>
+							<fb:FilterGroupItem name="Name" label="Name" groupName="Group1" visibleInFilterBar="true">
+								<fb:control>
+									<Input id="searchEmployeeNameId" name="Name" change="onFilterTextChange" placeholder="Input text..." />
+								</fb:control>
+							</fb:FilterGroupItem>
+						</fb:filterGroupItems>
+					</fb:FilterBar>
+					<HBox class="FilterBarButtons" justifyContent="SpaceBetween">
+						<Button text="Clear" press="clearFilter" />
+					</HBox>
+				</HBox>
+				</f:content>
+			</f:DynamicPageHeader>
+		</f:header>
+		<f:content>
 		<VBox class="centeredContainer">
 			<Table id="idEmployeesTable" inset="false" items="{Employees>/value}" itemPress="openDetails">
 				<columns>
@@ -44,5 +83,6 @@
 				</items>
 			</Table>
 		</VBox>
-    </Page>
+		</f:content>
+    </f:DynamicPage>
 </mvc:View>
